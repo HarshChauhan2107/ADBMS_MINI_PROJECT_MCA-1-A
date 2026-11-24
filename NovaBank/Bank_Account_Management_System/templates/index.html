@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10172b">
+  <title>NovaBank | Account Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body data-demo-mode="{{ 'true' if demo_mode else 'false' }}">
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/"><span class="brand-mark"><span></span><span></span><span></span></span><span>nova<span class="brand-light">bank</span><small>SMART BANKING CONSOLE</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav">
+        <a class="nav-link active" href="#overview" data-section="overview"><span class="nav-icon">▦</span> Overview</a>
+        <a class="nav-link" href="#accounts" data-section="accounts"><span class="nav-icon">▣</span> Accounts</a>
+        <a class="nav-link" href="#activity" data-section="activity"><span class="nav-icon">↗</span> Transactions</a>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="side-help"><div class="help-orb">✦</div><strong>Need a hand?</strong><p>Explore the guide to understand the demo workflow.</p><a href="#project-note">View project guide <span>↗</span></a></div>
+      <div class="profile-row"><div class="avatar">BA</div><div><strong>Bank Admin</strong><small>Project workspace</small></div><span class="profile-dots">•••</span></div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar"><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button><div><div class="eyebrow" id="currentDate">CURRENT DATE</div><h1>Good afternoon, <span>Admin</span> <span class="wave">✦</span></h1></div><div class="topbar-right"><div class="secure-chip"><span class="pulse-dot"></span><span id="connectionLabel">Preview environment</span></div><div class="top-avatar">BA</div></div></header>
+      <div class="demo-banner" id="demoBanner" {% if not demo_mode %}hidden{% endif %}><span>✦</span><div><strong>Preview mode is active</strong><small>Sample data is stored in memory. Connect Oracle Database for persistent SQL/PLSQL operations.</small></div><span class="preview-tag">DEMO</span></div>
+
+      <section class="hero-row"><div><div class="section-kicker">YOUR BANKING AT A GLANCE</div><h2>Dashboard overview</h2><p class="muted">Monitor accounts, balances and day-to-day activity in one place.</p></div><button class="primary-btn" id="openAccountBtn"><span>＋</span> Open new account</button></section>
+
+      <section class="stats-grid" aria-label="Banking summary">
+        <article class="stat-card stat-primary"><div class="stat-top"><span>Total balance</span><span class="stat-icon icon-wallet">◈</span></div><div class="stat-value" id="totalBalance">₹ 0</div><div class="stat-foot"><span class="trend-up">↗</span> <span>Combined account balance</span></div><div class="stat-spark spark-one"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Total accounts</span><span class="stat-icon icon-account">▣</span></div><div class="stat-value" id="totalAccounts">0</div><div class="stat-foot"><span class="soft-dot purple"></span><span>Active and frozen accounts</span></div><div class="stat-mini-note" id="frozenCount">0 frozen accounts</div></article>
+        <article class="stat-card"><div class="stat-top"><span>Customers</span><span class="stat-icon icon-customer">♙</span></div><div class="stat-value" id="totalCustomers">0</div><div class="stat-foot"><span class="soft-dot cyan"></span><span>Registered account holders</span></div><div class="avatar-stack"><i>AM</i><i>AS</i><i>KS</i><i>+2</i></div></article>
+        <article class="stat-card"><div class="stat-top"><span>Transactions today</span><span class="stat-icon icon-transfer">↗</span></div><div class="stat-value" id="todayTransactions">0</div><div class="stat-foot"><span class="trend-up">↗</span><span>Ledger entries recorded today</span></div><div class="stat-mini-note" id="monthVolume">Live transaction activity</div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel accounts-panel" id="accounts"><div class="panel-head"><div><div class="section-kicker">CUSTOMER DIRECTORY</div><h3>Account overview</h3></div><button class="text-btn" id="viewAllAccounts">View all <span>→</span></button></div>
+          <div class="table-tools"><label class="search-box"><span>⌕</span><input id="accountSearch" type="search" placeholder="Search name or account number..."></label><span class="result-count" id="accountCount">0 accounts</span></div>
+          <div class="table-wrap"><table><thead><tr><th>ACCOUNT HOLDER</th><th>ACCOUNT TYPE</th><th>ACCOUNT NUMBER</th><th>BALANCE</th><th>STATUS</th><th></th></tr></thead><tbody id="accountRows"><tr><td colspan="6" class="empty-cell">Loading accounts…</td></tr></tbody></table></div>
+        </article>
+        <article class="panel quick-panel"><div class="panel-head"><div><div class="section-kicker">QUICK ACCESS</div><h3>Move money</h3></div><span class="bolt-icon">✦</span></div><p class="muted small-text">Choose an operation to get started. Each action is validated before it is saved.</p>
+          <button class="quick-action" data-quick="DEPOSIT"><span class="quick-icon q-green">↓</span><span><strong>Deposit funds</strong><small>Add money to an account</small></span><b>→</b></button>
+          <button class="quick-action" data-quick="WITHDRAWAL"><span class="quick-icon q-violet">↑</span><span><strong>Withdraw funds</strong><small>Record a cash withdrawal</small></span><b>→</b></button>
+          <button class="quick-action" data-quick="TRANSFER"><span class="quick-icon q-blue">⇄</span><span><strong>Transfer money</strong><small>Move funds between accounts</small></span><b>→</b></button>
+          <div class="quick-tip"><span>✧</span><p><strong>Good to know</strong><br>Every successful operation creates a traceable transaction reference in the ledger.</p></div>
+        </article>
+      </section>
+
+      <section class="panel activity-panel" id="activity"><div class="panel-head"><div><div class="section-kicker">LATEST LEDGER ENTRIES</div><h3>Recent transactions</h3></div><button class="text-btn" id="refreshTransactions">Refresh <span>↻</span></button></div>
+        <div class="activity-list" id="transactionRows"><div class="empty-cell">Loading recent activity…</div></div>
+      </section>
+
+      <section class="project-note" id="project-note"><div class="note-symbol">i</div><div><strong>Academic project environment</strong><p>NovaBank is a learning prototype for Advanced Database Management Systems. It demonstrates relational design, referential integrity, transaction-safe PL/SQL procedures, audit logging and reporting views. Do not use real customer or financial data.</p></div><span class="note-version">ADBMS MINI PROJECT · v1.0</span></section>
+      <footer class="footer"><span>© 2026 NovaBank Academic Project</span><span>Built with Oracle SQL · PL/SQL · Python Flask</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-head"><div><div class="section-kicker">SECURE OPERATION</div><h3 id="modalTitle">Open a new account</h3></div><button class="close-btn" id="closeModal" aria-label="Close">×</button></div><div id="modalBody"></div></section></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body></html>

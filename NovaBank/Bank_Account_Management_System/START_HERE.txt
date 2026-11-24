@@ -1,0 +1,25 @@
+NOVABANK — ADBMS BANK ACCOUNT MANAGEMENT SYSTEM
+
+START HERE (WINDOWS)
+
+1. Install Oracle Database (19c+ / XE / Free) and Oracle SQL Developer.
+2. In the correct PDB, connect as SYSTEM and create the BANKAPP user. The exact SQL is in README.md, Section 5.
+3. Connect as BANKAPP. Open database/install.sql and run it with SQL Developer's Run Script (F5).
+4. Run database/04_seed_demo.sql once to add fictional sample accounts.
+5. Copy .env.example to .env. Set your BANKAPP password and Oracle PDB service name. Keep DEMO_MODE=false.
+6. Double-click run_windows.bat. Open http://127.0.0.1:5000.
+7. Run database/05_test_suite.sql and record your real results in docs/TEST_RECORD_TEMPLATE.md and the report.
+8. Run database/06_report_queries.sql to capture account, transaction and audit outputs for your report/viva.
+
+NO ORACLE YET?
+Set DEMO_MODE=true in .env and run run_windows.bat to explore the in-memory interface preview. Preview data is temporary and does not use Oracle SQL/PLSQL. Set it back to false for the actual project demonstration.
+
+READ FIRST:
+- README.md — full installation and GitHub guide
+- docs/NovaBank_Bank_Account_Management_System_Project_Report.docx — project report
+- docs/NovaBank_Complete_Source_Code_Appendix.docx — source appendix
+- docs/PRESENTATION_GUIDE.md — 3-member presentation plan
+- docs/EXPECTED_SAMPLE_RESULTS.md — reference account balances and expected outputs
+- docs/FINAL_SUBMISSION_CHECKLIST.md — final checks
+
+Use fictional sample data only. This is an academic prototype, not a production banking system.
